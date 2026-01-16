@@ -2,11 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native';
+import InputToDo from './component/button/input.todo';
+import ListToDo from './component/button/list.todo';
+
 
 export default function App() {
   //string
   const [name, setName] = useState<string>("");
-  const [toDoList, setToDoList] = useState([
+  const [toDoList, setToDoList] = useState<IToDo[]>([
     { id: 1, title: "Learn React Native1" },
     { id: 2, title: "Learn React JS" },
     { id: 3, title: "Watching Netflix" },
@@ -39,7 +42,8 @@ export default function App() {
   // }])
   return (
     <View style={styles.container}>
-      <View>
+      <InputToDo />
+      {/* <View>
         <TextInput
           onChangeText={v => setName(v)}
           value={name}
@@ -53,11 +57,10 @@ export default function App() {
             borderColor: "violet",
             borderWidth: 1,
             padding: 10
-          }} />
-        {/* <Text style={styles.text}>{age}</Text>
+          }} /> */}
+      {/* <Text style={styles.text}>{age}</Text>
         <Text style={styles.text}>{person.name}</Text> */}
-        <Text style={styles.text}>{name}</Text>
-      </View>
+      {/* </View> */}
       {/* <Text style={styles.text}>Hello world with 
         <Text style={styles.datcutepoy}>
            datcutepoy
@@ -70,10 +73,10 @@ export default function App() {
           )
         })}
       </ScrollView> */}
-      <Button title='add new' color={"green"}
+      {/* <Button title='add new' color={"green"}
         onPress={() => alert("Click me")}
-      />
-      <FlatList
+      /> */}
+      {/* <FlatList
         style={{ marginTop: 20, borderColor: "red", borderWidth: 1 }}
         data={toDoList}
         renderItem={({ item, }) => {
@@ -83,7 +86,8 @@ export default function App() {
             </Text>
           )
         }}
-      />
+      /> */}
+      <ListToDo todoList={toDoList} />
     </View>
 
   );
