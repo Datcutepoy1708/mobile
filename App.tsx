@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native';
 
 export default function App() {
   //string
   const [name,setName]=useState<string>("");
   const [toDoList,setToDoList]=useState([
-    {id:1,title:"Learn React Native"},
+    {id:1,title:"Learn React Native1"},
     {id:2,title:"Learn React JS"},
     {id:3,title:"Watching Netflix"},
     {id:4,title:"Watching Youtube"},
@@ -63,13 +63,13 @@ export default function App() {
            datcutepoy
         </Text>
       </Text> */}
-      <View style={{marginTop:20,  borderColor:"red",borderWidth:1}}>
+      <ScrollView style={{marginTop:20,  borderColor:"red",borderWidth:1}}>
         {toDoList.map(todo => {
           return (
             <Text key={todo.id} style={styles.todo}>{todo.title}</Text>
           )
         })}
-      </View>
+      </ScrollView>
       <Button title='add new' color={"green"} 
       onPress={()=>alert("Click me")}
       />
