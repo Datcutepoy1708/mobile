@@ -28,6 +28,11 @@ export default function App() {
     setToDoList([...toDoList, todo]);
   }
 
+  const deleteToDo= (id:number)=> {
+   const newToDo=toDoList.filter(todo=>todo.id !=id);
+   setToDoList(newToDo);
+  }
+
   //number
   // const[age,setAge]=useState<number>(30);
 
@@ -94,7 +99,7 @@ export default function App() {
           )
         }}
       /> */}
-      <ListToDo todoList={toDoList} />
+      <ListToDo todoList={toDoList} deleteToDo={deleteToDo} />
     </View>
 
   );
