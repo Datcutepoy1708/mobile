@@ -13,6 +13,7 @@ interface IProps {
 }
 const ListToDo = (props: IProps) => {
     const { todoList } = props;
+    // console.log(todoList);
     return (
         <>
             <FlatList

@@ -10,16 +10,23 @@ export default function App() {
   //string
   const [name, setName] = useState<string>("");
   const [toDoList, setToDoList] = useState<IToDo[]>([
-    { id: 1, title: "Learn React Native1" },
-    { id: 2, title: "Learn React JS" },
-    { id: 3, title: "Watching Netflix" },
-    { id: 4, title: "Watching Youtube" },
-    { id: 5, title: "Watching Film" },
-    { id: 6, title: "Độ Mixi" },
-    { id: 7, title: "Mẹ Lý" },
-    { id: 8, title: "Con chó Cao bằng" },
-    { id: 9, title: "Khô gà loại 2" }
+    // { id: 1, title: "Learn React Native1" },
+    // { id: 2, title: "Learn React JS" },
+    // { id: 3, title: "Watching Netflix" },
+    // { id: 4, title: "Watching Youtube" },
+    // { id: 5, title: "Watching Film" },
+    // { id: 6, title: "Độ Mixi" },
+    // { id: 7, title: "Mẹ Lý" },
+    // { id: 8, title: "Con chó Cao bằng" },
+    // { id: 9, title: "Khô gà loại 2" }
   ])
+  function randomInteger(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  const addToDo = (title: string) => {
+    const todo = { id: randomInteger(1, 1000), title: title };
+    setToDoList([...toDoList, todo]);
+  }
 
   //number
   // const[age,setAge]=useState<number>(30);
@@ -42,7 +49,7 @@ export default function App() {
   // }])
   return (
     <View style={styles.container}>
-      <InputToDo />
+      <InputToDo addToDo={addToDo} />
       {/* <View>
         <TextInput
           onChangeText={v => setName(v)}
