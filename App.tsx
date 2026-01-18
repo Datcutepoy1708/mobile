@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, Keyboard, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { TextInput } from 'react-native';
 import InputToDo from './component/button/input.todo';
 import ListToDo from './component/button/list.todo';
@@ -28,9 +28,9 @@ export default function App() {
     setToDoList([...toDoList, todo]);
   }
 
-  const deleteToDo= (id:number)=> {
-   const newToDo=toDoList.filter(todo=>todo.id !=id);
-   setToDoList(newToDo);
+  const deleteToDo = (id: number) => {
+    const newToDo = toDoList.filter(todo => todo.id != id);
+    setToDoList(newToDo);
   }
 
   //number
@@ -53,9 +53,10 @@ export default function App() {
   //   age:23
   // }])
   return (
-    <View style={styles.container}>
-      <InputToDo addToDo={addToDo} />
-      {/* <View>
+    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <InputToDo addToDo={addToDo} />
+        {/* <View>
         <TextInput
           onChangeText={v => setName(v)}
           value={name}
@@ -70,25 +71,25 @@ export default function App() {
             borderWidth: 1,
             padding: 10
           }} /> */}
-      {/* <Text style={styles.text}>{age}</Text>
+        {/* <Text style={styles.text}>{age}</Text>
         <Text style={styles.text}>{person.name}</Text> */}
-      {/* </View> */}
-      {/* <Text style={styles.text}>Hello world with 
+        {/* </View> */}
+        {/* <Text style={styles.text}>Hello world with 
         <Text style={styles.datcutepoy}>
            datcutepoy
         </Text>
       </Text> */}
-      {/* <ScrollView style={{marginTop:20,  borderColor:"red",borderWidth:1}}>
+        {/* <ScrollView style={{marginTop:20,  borderColor:"red",borderWidth:1}}>
         {toDoList.map(todo => {
           return (
             <Text key={todo.id} style={styles.todo}>{todo.title}</Text>
           )
         })}
       </ScrollView> */}
-      {/* <Button title='add new' color={"green"}
+        {/* <Button title='add new' color={"green"}
         onPress={() => alert("Click me")}
       /> */}
-      {/* <FlatList
+        {/* <FlatList
         style={{ marginTop: 20, borderColor: "red", borderWidth: 1 }}
         data={toDoList}
         renderItem={({ item, }) => {
@@ -99,8 +100,9 @@ export default function App() {
           )
         }}
       /> */}
-      <ListToDo todoList={toDoList} deleteToDo={deleteToDo} />
-    </View>
+        <ListToDo todoList={toDoList} deleteToDo={deleteToDo} />
+      </View>
+    </TouchableWithoutFeedback>
 
   );
 }

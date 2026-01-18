@@ -1,24 +1,40 @@
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Alert, Button, StyleSheet, TextInput, View } from "react-native";
 
 const styles = StyleSheet.create({
     todoInput: {
         borderColor: "violet",
         borderWidth: 1,
         padding: 10,
-        marginTop:20,
-        marginBottom:20,
-        borderRadius:5
+        marginTop: 20,
+        marginBottom: 20,
+        borderRadius: 5
     }
 })
 interface IProps {
-    addToDo:(v:string)=> void; 
+    addToDo: (v: string) => void;
 }
-const InputToDo = (props:IProps) => {
-    const {addToDo}=props;
+const InputToDo = (props: IProps) => {
+    const { addToDo } = props;
     const [name, setName] = useState<string>("");
-    const handleAddNewToDo = ()=> {
+    const handleAddNewToDo = () => {
+        //validate data
+        if (!name) {
+            Alert.alert("Thông tin không hợp lệ",
+                "Tiêu đề không được để trống",
+                [
+                    // {
+                    //     text: 'Cancel',
+                    //     onPress: () => console.log('Cancel Pressed'),
+                    //     style: 'cancel'
+                    // },
+                    { text: 'OK con dê', onPress: () => console.log('Ok pressed') }
+                ]
+            );
+            return;
+        }
         addToDo(name);
+        setName("");
     }
     return (
         <>
