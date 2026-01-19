@@ -8,28 +8,36 @@ const styles = StyleSheet.create({
         marginTop: 40,
         borderWidth: 1,
         borderColor: "red",
-        flexDirection: "row",
-        justifyContent:"center"
+       // flexDirection: "row",
+        justifyContent:"center", // theo trục ox của thg cha,
+        alignItems:"center",
+        flexDirection:"column" // căn theo trục oy
     },
     item1: {
         padding: 20,
         borderWidth: 1,
-        backgroundColor: "violet"
+        backgroundColor: "violet",
+        height:250,
+        width:250
     },
     item2: {
         padding: 20,
         borderWidth: 1,
-        backgroundColor: "yellow"
+        backgroundColor: "yellow",
+        height:300,
+        width:300
     },
     item3: {
         padding: 20,
         borderWidth: 1,
-        backgroundColor: "pink"
+        backgroundColor: "pink",
+        height:100,
+        width:100
     },
     item4: {
         padding: 20,
         borderWidth: 1,
-        backgroundColor: "green"
+        backgroundColor: "green",
     }
 })
 //height ,width
