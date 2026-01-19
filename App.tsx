@@ -5,7 +5,8 @@ import { TextInput } from 'react-native';
 import InputToDo from './component/button_todo/input.todo';
 import ListToDo from './component/button_todo/list.todo';
 import FlexBox from './component/button_todo/flexbox';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function App() {
   //string
@@ -53,6 +54,21 @@ export default function App() {
   //   name:"datcutepoy1",
   //   age:23
   // }])
+  const Stack = createNativeStackNavigator();
+  function HomeScreen() {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Home Screen</Text>
+      </View>
+    )
+  }
+  function DetailsScreen() {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Details Screen</Text>
+      </View>
+    )
+  }
   return (
     // <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
     //   <View style={styles.container}>
@@ -104,7 +120,13 @@ export default function App() {
     //     <ListToDo todoList={toDoList} deleteToDo={deleteToDo} />
     //   </View>
     // </TouchableWithoutFeedback>
-    <FlexBox/>
+    // <FlexBox/>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Detail" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
 
   );
 }
