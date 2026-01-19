@@ -7,6 +7,7 @@ import ListToDo from './component/button_todo/list.todo';
 import FlexBox from './component/button_todo/flexbox';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
   //string
@@ -55,17 +56,42 @@ export default function App() {
   //   age:23
   // }])
   const Stack = createNativeStackNavigator();
-  function HomeScreen() {
+  function HomeScreen(props: any) {
+    const navigation = props.navigation;
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Home Screen</Text>
+        <Text>Go user id=??</Text>
+        <Button
+          title='Go to detail'
+          onPress={() => navigation.navigate("Details")}
+        />
       </View>
     )
   }
   function DetailsScreen() {
+    const navigation: any = useNavigation();
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Details Screen</Text>
+        <View style={{ marginVertical: 10 }}>
+          <Button
+            title='Go back home'
+            onPress={() => navigation.goBack()}
+          />
+        </View>
+        <View style={{ marginVertical: 10 }}>
+          <Button
+            title='Go user id=1'
+            onPress={() => navigation.goBack()}
+          />
+        </View>
+        <View style={{ marginVertical: 10 }}>
+          <Button
+            title='Go user id=2'
+            onPress={() => navigation.goBack()}
+          />
+        </View>
       </View>
     )
   }
@@ -124,7 +150,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Detail" component={DetailsScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
 
