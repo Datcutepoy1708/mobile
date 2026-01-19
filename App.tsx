@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Button, FlatList, Keyboard, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { TextInput } from 'react-native';
-import InputToDo from './component/button/input.todo';
-import ListToDo from './component/button/list.todo';
+import InputToDo from './component/button_todo/input.todo';
+import ListToDo from './component/button_todo/list.todo';
 
 
 export default function App() {
