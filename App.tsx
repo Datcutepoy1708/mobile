@@ -4,6 +4,7 @@ import { Button, FlatList, Keyboard, ScrollView, StyleSheet, Text, TouchableWith
 import { TextInput } from 'react-native';
 import InputToDo from './component/button_todo/input.todo';
 import ListToDo from './component/button_todo/list.todo';
+import FlexBox from './component/button_todo/flexbox';
 
 
 export default function App() {
@@ -53,56 +54,57 @@ export default function App() {
   //   age:23
   // }])
   return (
-    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-      <View style={styles.container}>
-        <InputToDo addToDo={addToDo} />
-        {/* <View>
-        <TextInput
-          onChangeText={v => setName(v)}
-          value={name}
-          autoCapitalize='none'
-          //keyboardType='numeric'
-          // maxLength={2} textarea
-          multiline={true}
-          autoCorrect={false}
-          style={{
-            marginTop: 50,
-            borderColor: "violet",
-            borderWidth: 1,
-            padding: 10
-          }} /> */}
-        {/* <Text style={styles.text}>{age}</Text>
-        <Text style={styles.text}>{person.name}</Text> */}
-        {/* </View> */}
-        {/* <Text style={styles.text}>Hello world with 
-        <Text style={styles.datcutepoy}>
-           datcutepoy
-        </Text>
-      </Text> */}
-        {/* <ScrollView style={{marginTop:20,  borderColor:"red",borderWidth:1}}>
-        {toDoList.map(todo => {
-          return (
-            <Text key={todo.id} style={styles.todo}>{todo.title}</Text>
-          )
-        })}
-      </ScrollView> */}
-        {/* <Button title='add new' color={"green"}
-        onPress={() => alert("Click me")}
-      /> */}
-        {/* <FlatList
-        style={{ marginTop: 20, borderColor: "red", borderWidth: 1 }}
-        data={toDoList}
-        renderItem={({ item, }) => {
-          return (
-            <Text key={item.id} style={styles.todo}>
-              {item.title}
-            </Text>
-          )
-        }}
-      /> */}
-        <ListToDo todoList={toDoList} deleteToDo={deleteToDo} />
-      </View>
-    </TouchableWithoutFeedback>
+    // <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+    //   <View style={styles.container}>
+    //     <InputToDo addToDo={addToDo} />
+    //     {/* <View>
+    //     <TextInput
+    //       onChangeText={v => setName(v)}
+    //       value={name}
+    //       autoCapitalize='none'
+    //       //keyboardType='numeric'
+    //       // maxLength={2} textarea
+    //       multiline={true}
+    //       autoCorrect={false}
+    //       style={{
+    //         marginTop: 50,
+    //         borderColor: "violet",
+    //         borderWidth: 1,
+    //         padding: 10
+    //       }} /> */}
+    //     {/* <Text style={styles.text}>{age}</Text>
+    //     <Text style={styles.text}>{person.name}</Text> */}
+    //     {/* </View> */}
+    //     {/* <Text style={styles.text}>Hello world with 
+    //     <Text style={styles.datcutepoy}>
+    //        datcutepoy
+    //     </Text>
+    //   </Text> */}
+    //     {/* <ScrollView style={{marginTop:20,  borderColor:"red",borderWidth:1}}>
+    //     {toDoList.map(todo => {
+    //       return (
+    //         <Text key={todo.id} style={styles.todo}>{todo.title}</Text>
+    //       )
+    //     })}
+    //   </ScrollView> */}
+    //     {/* <Button title='add new' color={"green"}
+    //     onPress={() => alert("Click me")}
+    //   /> */}
+    //     {/* <FlatList
+    //     style={{ marginTop: 20, borderColor: "red", borderWidth: 1 }}
+    //     data={toDoList}
+    //     renderItem={({ item, }) => {
+    //       return (
+    //         <Text key={item.id} style={styles.todo}>
+    //           {item.title}
+    //         </Text>
+    //       )
+    //     }}
+    //   /> */}
+    //     <ListToDo todoList={toDoList} deleteToDo={deleteToDo} />
+    //   </View>
+    // </TouchableWithoutFeedback>
+    <FlexBox/>
 
   );
 }
