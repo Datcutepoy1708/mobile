@@ -5,7 +5,7 @@ import { TextInput } from 'react-native';
 import InputToDo from './component/button_todo/input.todo';
 import ListToDo from './component/button_todo/list.todo';
 import FlexBox from './component/button_todo/flexbox';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
@@ -61,34 +61,37 @@ export default function App() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Home Screen</Text>
-        <Text>Go user id=??</Text>
-        <Button
-          title='Go to detail'
-          onPress={() => navigation.navigate("Details")}
-        />
-      </View>
-    )
-  }
-  function DetailsScreen() {
-    const navigation: any = useNavigation();
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Details Screen</Text>
         <View style={{ marginVertical: 10 }}>
           <Button
-            title='Go back home'
-            onPress={() => navigation.goBack()}
+            title='Go to detail'
+            onPress={() => navigation.navigate("Details")}
           />
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
             title='Go user id=1'
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.navigate("Details", { userId: 1, name: "Datcutepoy" })}
           />
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
             title='Go user id=2'
+            onPress={() => navigation.navigate("Details", { userId: 2, name: "Dat dz" })}
+          />
+        </View>
+      </View>
+    )
+  }
+  function DetailsScreen() {
+    const route:any = useRoute();
+    const navigation: any = useNavigation();
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Details Screen</Text>
+        <Text>Go user id={route.params.userId}</Text>
+        <View style={{ marginVertical: 10 }}>
+          <Button
+            title='Go back home'
             onPress={() => navigation.goBack()}
           />
         </View>
