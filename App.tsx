@@ -83,12 +83,12 @@ export default function App() {
     )
   }
   function DetailsScreen() {
-    const route:any = useRoute();
+    const route: any = useRoute();
     const navigation: any = useNavigation();
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Details Screen</Text>
-        <Text>Go user id={route.params.userId}</Text>
+        <Text>Go user id={route?.params?.userId}</Text>
         <View style={{ marginVertical: 10 }}>
           <Button
             title='Go back home'
@@ -152,8 +152,19 @@ export default function App() {
     // <FlexBox/>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerTitle: "Trang chủ" }} />
+        <Stack.Screen name="Details" component={DetailsScreen} options={({ route }: any) => (
+          {
+            headerTitle: `Xem chi tiết ${route?.params?.userId ?? ""}`,
+            headerStyle: {
+              backgroundColor: '#f4511e',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold'
+            }
+          }
+        )} />
       </Stack.Navigator>
     </NavigationContainer>
 
