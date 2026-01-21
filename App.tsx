@@ -8,6 +8,9 @@ import FlexBox from './component/button_todo/flexbox';
 import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import 'react-native-gesture-handler'
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
 
 export default function App() {
   //string
@@ -56,6 +59,7 @@ export default function App() {
   //   age:23
   // }])
   const Stack = createNativeStackNavigator();
+  const Drawer=createDrawerNavigator();
   function HomeScreen(props: any) {
     const navigation = props.navigation;
     return (
@@ -151,21 +155,32 @@ export default function App() {
     // </TouchableWithoutFeedback>
     // <FlexBox/>
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'
+          }
+        }}>
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerTitle: "Trang chủ" }} />
         <Stack.Screen name="Details" component={DetailsScreen} options={({ route }: any) => (
           {
             headerTitle: `Xem chi tiết ${route?.params?.userId ?? ""}`,
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold'
-            }
           }
         )} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <Drawer.Navigator initialRouteName='Details'>
+        <Drawer.Screen 
+        options={{
+          drawerLabel: "Trang chủ",
+          headerTitle:"Trang chủ"
+        }}
+        name="Feed" component={HomeScreen} />
+        <Drawer.Screen name="Article" component={DetailsScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
 
   );
