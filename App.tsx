@@ -68,19 +68,19 @@ export default function App() {
         <View style={{ marginVertical: 10 }}>
           <Button
             title='Go to detail'
-            onPress={() => navigation.navigate("Details")}
+            onPress={() => navigation.navigate("Article")}
           />
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
             title='Go user id=1'
-            onPress={() => navigation.navigate("Details", { userId: 1, name: "Datcutepoy" })}
+            onPress={() => navigation.navigate("Article", { userId: 1, name: "Datcutepoy" })}
           />
         </View>
         <View style={{ marginVertical: 10 }}>
           <Button
             title='Go user id=2'
-            onPress={() => navigation.navigate("Details", { userId: 2, name: "Dat dz" })}
+            onPress={() => navigation.navigate("Article", { userId: 2, name: "Dat dz" })}
           />
         </View>
       </View>
@@ -172,7 +172,11 @@ export default function App() {
           }
         )} />
       </Stack.Navigator> */}
-      <Drawer.Navigator initialRouteName='Details'>
+      <Drawer.Navigator 
+        initialRouteName='Feed'
+        screenOptions={{
+          drawerType: 'front',
+        }}>
         <Drawer.Screen 
         options={{
           drawerLabel: "Trang chủ",
