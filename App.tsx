@@ -12,6 +12,12 @@ import 'react-native-gesture-handler'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from './component/learn/home';
+import HomeDetail from './component/learn/home.detail';
+import Like from './component/learn/like';
+import LikeDetail from './component/learn/like.detail';
+import About from './component/learn/about';
+import ChangePassword from './component/learn/changePassword';
 
 export default function App() {
   //string
@@ -62,48 +68,97 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   const Drawer = createDrawerNavigator();
   const Tab = createBottomTabNavigator();
-  function HomeScreen(props: any) {
-    const navigation = props.navigation;
+  const TabApp = () => {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Screen</Text>
-        <View style={{ marginVertical: 10 }}>
-          <Button
-            title='Go to detail'
-            onPress={() => navigation.navigate("Article")}
-          />
-        </View>
-        <View style={{ marginVertical: 10 }}>
-          <Button
-            title='Go user id=1'
-            onPress={() => navigation.navigate("Article", { userId: 1, name: "Datcutepoy" })}
-          />
-        </View>
-        <View style={{ marginVertical: 10 }}>
-          <Button
-            title='Go user id=2'
-            onPress={() => navigation.navigate("Article", { userId: 2, name: "Dat dz" })}
-          />
-        </View>
-      </View>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused ? 'home' : 'home-outline';
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'settings' : 'settings-outline';
+            }
+
+            // Dùng như component React, KHÔNG phải <ionicons>
+            return <Ionicons name={iconName as any} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Like" component={Like} />
+      </Tab.Navigator>
     )
   }
-  function DetailsScreen() {
-    const route: any = useRoute();
-    const navigation: any = useNavigation();
+  const StackApp = () => {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Details Screen</Text>
-        <Text>Go user id={route?.params?.userId}</Text>
-        <View style={{ marginVertical: 10 }}>
-          <Button
-            title='Go back home'
-            onPress={() => navigation.goBack()}
-          />
-        </View>
-      </View>
+
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'
+          }
+        }}>
+        <Stack.Screen name="Home" component={TabApp} options={{ headerTitle: "Trang chủ", headerShown: false }} />
+        <Stack.Screen name="LikeDetail" component={LikeDetail} />
+        <Stack.Screen name="Details" component={HomeDetail} options={({ route }: any) => (
+          {
+            headerTitle: `Xem chi tiết ${route?.params?.userId ?? ""}`,
+          }
+        )} />
+      </Stack.Navigator>
+
     )
   }
+  // function HomeScreen(props: any) {
+  //   const navigation = props.navigation;
+  //   return (
+  //     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+  //       <Text>Home Screen</Text>
+  //       <View style={{ marginVertical: 10 }}>
+  //         <Button
+  //           title='Go to detail'
+  //           onPress={() => navigation.navigate("Article")}
+  //         />
+  //       </View>
+  //       <View style={{ marginVertical: 10 }}>
+  //         <Button
+  //           title='Go user id=1'
+  //           onPress={() => navigation.navigate("Article", { userId: 1, name: "Datcutepoy" })}
+  //         />
+  //       </View>
+  //       <View style={{ marginVertical: 10 }}>
+  //         <Button
+  //           title='Go user id=2'
+  //           onPress={() => navigation.navigate("Article", { userId: 2, name: "Dat dz" })}
+  //         />
+  //       </View>
+  //     </View>
+  //   )
+  // }
+  // function DetailsScreen() {
+  //   const route: any = useRoute();
+  //   const navigation: any = useNavigation();
+  //   return (
+  //     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+  //       <Text>Details Screen</Text>
+  //       <Text>Go user id={route?.params?.userId}</Text>
+  //       <View style={{ marginVertical: 10 }}>
+  //         <Button
+  //           title='Go back home'
+  //           onPress={() => navigation.goBack()}
+  //         />
+  //       </View>
+  //     </View>
+  //   )
+  // }
   return (
     // <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
     //   <View style={styles.container}>
@@ -157,37 +212,18 @@ export default function App() {
     // </TouchableWithoutFeedback>
     // <FlexBox/>
     <NavigationContainer>
-      {/* <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold'
-          }
-        }}>
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerTitle: "Trang chủ" }} />
-        <Stack.Screen name="Details" component={DetailsScreen} options={({ route }: any) => (
-          {
-            headerTitle: `Xem chi tiết ${route?.params?.userId ?? ""}`,
-          }
-        )} />
-      </Stack.Navigator> */}
-      {/* <Drawer.Navigator 
-        initialRouteName='Feed'
+
+      <Drawer.Navigator
+        initialRouteName='About'
         screenOptions={{
           drawerType: 'front',
         }}>
-        <Drawer.Screen 
-        options={{
-          drawerLabel: "Trang chủ",
-          headerTitle:"Trang chủ"
-        }}
-        name="Feed" component={HomeScreen} />
-        <Drawer.Screen name="Article" component={DetailsScreen} />
-      </Drawer.Navigator> */}
-      <Tab.Navigator
+        <Drawer.Screen
+          name="About" component={About} />
+        <Drawer.Screen name="ChangePassword" component={ChangePassword} />
+        <Drawer.Screen name="StackApp" component={StackApp} />
+      </Drawer.Navigator>
+      {/* <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -205,9 +241,9 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={DetailsScreen} />
-      </Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Settings" component={HomeDetail} />
+      </Tab.Navigator> */}
     </NavigationContainer>
 
   );
